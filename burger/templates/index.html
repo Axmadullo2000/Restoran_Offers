@@ -1,0 +1,206 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Burger</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static '../static/img/favicon.png' %}">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{% static '../static/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '../static/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static '../static/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static '../static/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static '../static/css/themify-icons.css' %}">
+    <link rel="stylesheet" href="{% static '../static/css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static '../static/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static '../static/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static '../static/css/slicknav.css'%}">
+    <link rel="stylesheet" href="{% static '../static/css/style.css' %}">
+{#    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">#}
+</head>
+<body>
+    <!-- header-start -->
+    <header>
+        <div class="header-area ">
+            <div id="sticky-header" class="main-header-area">
+                <div class="container-fluid p-0">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col-xl-5 col-lg-5">
+                            <div class="main-menu  d-none d-lg-block">
+                                <nav>
+                                    <ul id="navigation">
+                                        <li><a class="active" href="/">home</a></li>
+                                        <li><a href="/menu">Menu</a></li>
+                                        <li><a href="/about">About</a></li>
+                                        <li><a href="/blog">blog <i class="ti-angle-down"></i></a>
+                                            <ul class="submenu">
+                                                <li><a href="/blog">blog</a></li>
+                                                <li><a href="/single-blog">single blog</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="">Pages <i class="ti-angle-down"></i></a>
+                                            <ul class="submenu">
+                                                <li><a href="/pages">elements</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="/contact">Contact</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-2">
+                            <div class="logo-img">
+                                <a href="/">
+                                    <img src="{% static '../static/img/logo.png' %}" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xl-5 col-lg-5 d-none d-lg-block">
+                            <div class="book_room">
+                                <div class="socail_links">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-instagram"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-twitter"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-facebook"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-google-plus"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="book_btn d-none d-xl-block">
+                                    <a class="#"  href="tel:+998997944262"> +998 99 794 42 62</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header-end -->
+
+    {% if models.count > 0 %}
+        <!-- slider_area_start -->
+        <div id="mySlider" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            {% for model in models %}
+                {% if models.count > 1 %}
+                    <li style="margin-top: 30px;" data-target="#mySlider" data-slide-to="{{ forloop.counter0 }}"
+                        class="{% if forloop.first%}active{% endif %} indicator" id="indicator_carousel"></li>
+                {% endif %}
+            {% endfor %}
+        </ol>
+        <div class="carousel-inner">
+            {% for model in models %}
+                <div class="carousel-item {% if forloop.first%}active{% endif %}">
+                    <img src="{{model.image.url}}" alt="" class="d-block w-100">
+                    <div class="carousel-caption d-md-block" style="transform: translateY(-50%)">
+                          <h2 style="color: yellow; font-size: 70px;" class="title_carousel" id="title">{{ model.title }}</h2>
+                          <p style="font-size: 24px;" class="content_carousel">{{ model.content }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <a class="carousel-control-prev" href="#mySlider" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#mySlider" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+        <!-- slider_area_end -->
+    {% endif %}
+
+    {% if best_burgers.count > 0 %}
+        {% include 'best_burgers.html' %}
+    {% endif %}
+
+    {% if president_burgers.count > 0 %}
+        {% include 'presidents_burger.html' %}
+    {% endif %}
+
+    {% include 'about_area.html' %}
+
+    <!-- video_area_start -->
+    <div class="video_area video_bg overlay">
+        <div class="video_area_inner text-center">
+            <h3>Burger <br>
+                Bachelor</h3>
+            <span>How we make delicious Burger</span>
+            <div class="video_payer">
+                <a href="https://www.youtube.com/watch?v=UYqNIvmwmaU" class="video_btn popup-video">
+                    <i class="fa fa-play"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- video_area_end -->
+
+
+    {% if hamburger_clients.count > 0 %}
+        {% include 'happy_customers.html' %}
+    {% endif %}
+
+
+    {% include 'insta_publis.html' %}
+
+
+    {% include 'footer.html' %}
+
+
+    <!-- JS here -->
+    <script src="{% static '../static/js/vendor/modernizr-3.5.0.min.js' %}"></script>
+    <script src="{% static '../static/js/vendor/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static '../static/js/popper.min.js' %}"></script>
+    <script src="{% static '../static/js/bootstrap.min.js' %}"></script>
+    <script src="{% static '../static/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static '../static/js/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static '../static/js/ajax-form.js' %}"></script>
+    <script src="{% static '../static/js/waypoints.min.js' %}"></script>
+    <script src="{% static '../static/js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static '../static/js/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static '../static/js/scrollIt.js' %}"></script>
+    <script src="{% static '../static/js/jquery.scrollUp.min.js' %}"></script>
+    <script src="{% static '../static/js/wow.min.js' %}"></script>
+    <script src="{% static '../static/js/nice-select.min.js' %}"></script>
+    <script src="{% static '../static/js/jquery.slicknav.min.js' %}"></script>
+    <script src="{% static '../static/js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static '../static/js/plugins.js' %}"></script>
+
+    <!--contact js-->
+    <script src="{% static '../static/js/contact.js' %}"></script>
+    <script src="{% static '../static/js/jquery.ajaxchimp.min.js' %}"></script>
+    <script src="{% static '../static/js/jquery.form.js' %}"></script>
+    <script src="{% static '../static/js/jquery.validate.min.js' %}"></script>
+    <script src="{% static '../static/js/mail-script.js' %}"></script>
+
+    <script src="{% static '../static/js/main.js' %}"></script>
+
+</body>
+</html>

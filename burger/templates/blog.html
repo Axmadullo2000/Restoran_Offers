@@ -1,0 +1,366 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Burger</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{% static '../static/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '../static/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static '../static/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static '../static/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static '../static/css/themify-icons.css' %}">
+    <link rel="stylesheet" href="{% static '../static/css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static '../static/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static '../static/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static '../static/css/slicknav.css'%}">
+    <link rel="stylesheet" href="{% static '../static/css/style.css' %}">
+{#    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">#}
+</head>
+
+<section>
+    <!-- header-start -->
+    <header>
+        <div class="header-area ">
+            <div id="sticky-header" class="main-header-area">
+                <div class="container-fluid p-0">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col-xl-5 col-lg-5">
+                            <div class="main-menu  d-none d-lg-block">
+                                <nav>
+                                    <ul id="navigation">
+                                        <li><a  href="/">home</a></li>
+                                        <li><a href="/menu">Menu</a></li>
+                                        <li><a href="/about">About</a></li>
+                                        <li><a class="active" href="/blog">blog <i class="ti-angle-down"></i></a>
+                                            <ul class="submenu">
+                                                <li><a href="/blog" class="active">blog</a></li>
+                                                <li><a href="/single-blog">single-blog</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Pages <i class="ti-angle-down"></i></a>
+                                            <ul class="submenu">
+                                                <li><a href="/pages">elements</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="/contact">Contact</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-2">
+                            <div class="logo-img">
+                                <a href="/">
+                                    <img src="{% static '../static/img/logo.png' %}" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xl-5 col-lg-5 d-none d-lg-block">
+                            <div class="book_room">
+                                <div class="socail_links">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-instagram"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-twitter"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-facebook"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-google-plus"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="book_btn d-none d-xl-block">
+                                    <a class="#"  href="tel:+998997944262">+998 99 794 42 62</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header-end -->
+
+    <!-- bradcam_area_start -->
+    <div class="bradcam_area breadcam_bg">
+        <h3>blog</h3>
+    </div>
+
+    <!-- bradcam_area_end -->
+    {% if blog_posts.count > 0 %}
+        <!--================Blog Area =================-->
+        <section class="blog_area section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mb-5 mb-lg-0">
+                        <div class="blog_left_sidebar">
+                            {% for blog_post in blog_posts %}
+                                <article class="blog_item">
+                                    <div class="blog_item_img">
+                                    <img class="card-img rounded-0" src="{{ blog_post.image.url }}" alt="">
+                                    <a href="#" class="blog_item_date">
+                                        <h3>{{ blog_post.printDay }}</h3>
+                                        <p>{{ blog_post.printMonth }}</p>
+                                    </a>
+                                </div>
+                                <div class="blog_details">
+                                    <a class="d-inline-block" href="/single-blog">
+                                        <h2>{{ blog_post.title }}</h2>
+                                    </a>
+                                    <p>{{ blog_post.content }}</p>
+                                    <ul class="blog-info-link">
+                                        <li><a href="#"><i class="fa fa-user"></i>{{ blog_post.author }}</a></li>
+                                        <li><a href="#"><i class="fa fa-comments"></i> {{ blog_post.comments }} Comments</a></li>
+                                    </ul>
+                                </div>
+                            </article>
+                            {% endfor %}
+                            {% if is_paginated %}
+                                <nav class="blog-pagination justify-content-center d-flex">
+                                    <ul class="pagination">
+                                        {% if page_obj.has_previous %}
+                                            <li class="page-item">
+                                                <a href="?page={{ blog_posts.previous_page_number }}" class="page-link" aria-label="Previous">
+                                                    <i class="ti-angle-left"></i>
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                        <li class="page-item" style="
+                                        margin-top: 10px; margin-left: -2px;">{{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</li>
+                                        {% if page_obj.has_next %}
+                                            <li class="page-item">
+                                                <a href="?page={{ page_obj.next_page_number }}" class="page-link" aria-label="Next">
+                                                    <i class="ti-angle-right"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                 {% endif %}
+                            </div>
+                        </div>
+                    <div class="col-lg-4">
+                        <div class="blog_right_sidebar">
+                            {% include 'forms.html' %}
+                            <aside class="single_sidebar_widget post_category_widget">
+                                <h4 class="widget_title">Category</h4>
+                                <ul class="list cat-list">
+                                    <li>
+                                        <a href="#" class="d-flex">
+                                            <p>Resaurant food</p>
+                                            <p>(37)</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="d-flex">
+                                            <p>Travel news</p>
+                                            <p>(10)</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="d-flex">
+                                            <p>Modern technology</p>
+                                            <p>(03)</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="d-flex">
+                                            <p>Product</p>
+                                            <p>(11)</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="d-flex">
+                                            <p>Inspiration</p>
+                                            <p>21</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="d-flex">
+                                            <p>Health Care (21)</p>
+                                            <p>09</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </aside>
+
+                            <aside class="single_sidebar_widget popular_post_widget">
+                                <h3 class="widget_title">Recent Post</h3>
+                                <div class="media post_item">
+                                    <img src="../static/img/post/post_1.png" alt="post">
+                                    <div class="media-body">
+                                        <a href="">
+                                            <h3>From life was you fish...</h3>
+                                        </a>
+                                        <p>January 12, 2019</p>
+                                    </div>
+                                </div>
+                                <div class="media post_item">
+                                    <img src="../static/img/post/post_2.png" alt="post">
+                                    <div class="media-body">
+                                        <a href="">
+                                            <h3>The Amazing Hubble</h3>
+                                        </a>
+                                        <p>02 Hours ago</p>
+                                    </div>
+                                </div>
+                                <div class="media post_item">
+                                    <img src="../static/img/post/post_3.png" alt="post">
+                                    <div class="media-body">
+                                        <a href="">
+                                            <h3>Astronomy Or Astrology</h3>
+                                        </a>
+                                        <p>03 Hours ago</p>
+                                    </div>
+                                </div>
+                                <div class="media post_item">
+                                    <img src="../static/img/post/post_4.png" alt="post">
+                                    <div class="media-body">
+                                        <a href="">
+                                            <h3>Asteroids telescope</h3>
+                                        </a>
+                                        <p>01 Hours ago</p>
+                                    </div>
+                                </div>
+                            </aside>
+                            <aside class="single_sidebar_widget tag_cloud_widget">
+                                <h4 class="widget_title">Tag Clouds</h4>
+                                <ul class="list">
+                                    <li>
+                                        <a href="#">project</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">love</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">technology</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">travel</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">restaurant</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">life style</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">design</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">illustration</a>
+                                    </li>
+                                </ul>
+                            </aside>
+
+
+                            <aside class="single_sidebar_widget instagram_feeds">
+                                <h4 class="widget_title">Instagram Feeds</h4>
+                                <ul class="instagram_row flex-wrap">
+                                    <li>
+                                        <a href="#">
+                                            <img class="img-fluid" src="../static/img/post/post_5.png" alt="">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img class="img-fluid" src="../static/img/post/post_6.png" alt="">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img class="img-fluid" src="../static/img/post/post_7.png" alt="">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img class="img-fluid" src="../static/img/post/post_8.png" alt="">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img class="img-fluid" src="../static/img/post/post_9.png" alt="">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img class="img-fluid" src="../static/img/post/post_10.png" alt="">
+                                         </a>
+                                    </li>
+                                </ul>
+                            </aside>
+
+
+                            <aside class="single_sidebar_widget newsletter_widget">
+                                <h4 class="widget_title">Newsletter</h4>
+                                <form action="#">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" onfocus="this.placeholder = ''"
+                                            onblur="this.placeholder = 'Enter email'" placeholder='Enter email' required>
+                                    </div>
+                                    <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
+                                        type="submit">Subscribe</button>
+                                </form>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--================Blog Area =================-->
+        {% endif %}
+    {% endif %}
+    </section>
+        {% include 'footer.html' %}
+
+
+
+
+    <!-- JS here -->
+    <script src="{% static '../static/js/vendor/modernizr-3.5.0.min.js' %}"></script>
+    <script src="{% static '../static/js/vendor/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static '../static/js/popper.min.js' %}"></script>
+    <script src="{% static '../static/js/bootstrap.min.js' %}"></script>
+    <script src="{% static '../static/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static '../static/js/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static '../static/js/ajax-form.js' %}"></script>
+    <script src="{% static '../static/js/waypoints.min.js' %}"></script>
+    <script src="{% static '../static/js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static '../static/js/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static '../static/js/scrollIt.js' %}"></script>
+    <script src="{% static '../static/js/jquery.scrollUp.min.js' %}"></script>
+    <script src="{% static '../static/js/wow.min.js' %}"></script>
+    <script src="{% static '../static/js/nice-select.min.js' %}"></script>
+    <script src="{% static '../static/js/jquery.slicknav.min.js' %}"></script>
+    <script src="{% static '../static/js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static '../static/js/plugins.js' %}"></script>
+
+    <!--contact js-->
+    <script src="{% static '../static/js/contact.js' %}"></script>
+    <script src="{% static '../static/js/jquery.ajaxchimp.min.js' %}"></script>
+    <script src="{% static '../static/js/jquery.form.js' %}"></script>
+    <script src="{% static '../static/js/jquery.validate.min.js' %}"></script>
+    <script src="{% static '../static/js/mail-script.js' %}"></script>
+
+    <script src="{% static '../static/js/main.js' %}"></script>
+
+</body>

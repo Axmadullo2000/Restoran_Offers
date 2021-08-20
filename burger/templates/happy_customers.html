@@ -1,0 +1,65 @@
+{% load static %}
+<!-- testimonial_area_start  -->
+        <div class="testimonial_area ">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="section_title mb-60 text-center">
+                            <span>Testimonials</span>
+                            <h3>Hamburger Customers</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="testmonial_active owl-carousel" id="testmonial">
+                        {% for hamburger_client in hamburger_clients %}
+                            <div class="single_carousel">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <div class="single_testmonial text-center">
+                                        <p>{{ hamburger_client.comment }}</p>
+                                        <div class="testmonial_author">
+                                            <div class="thumb">
+                                                <img src="{{ hamburger_client.image.url }}" width="80" height="80" alt="">
+                                            </div>
+                                            <h4 style="margin-top: 20px;">{{ hamburger_client.author }}</h4>
+                                            <div class="stars">
+                                                    {% if hamburger_client.grade == 1 %}
+                                                        <i class="fa fa-star"></i>
+                                                    {% elif hamburger_client.grade == 2 %}
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                    {% elif hamburger_client.grade == 3 %}
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                    {% elif hamburger_client.grade == 4 %}
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                    {% else %}
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                    {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <a href="#testmonial" class="carousel-control-next">
+                        <span class="carousel-control-next-icon"></span>
+                        <span>Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- testimonial_area_ned  -->

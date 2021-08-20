@@ -1,0 +1,22 @@
+{% load static %}
+<!-- features_room_start -->
+        <div class="Burger_President_area" style="margin-top: 10rem;">
+            <div class="Burger_President_here">
+            {% for president_burger in president_burgers %}
+                <div class="single_Burger_President">
+                    <div class="room_thumb">
+                        <img src="{{ president_burger.image.url }}" alt="">
+                        <div class="room_heading d-flex justify-content-between align-items-center">
+                            <div class="room_heading_inner">
+                                <span>${{ president_burger.price }}</span>
+                                <h3>{{ president_burger.title }}</h3>
+                                <p>{{ president_burger.content }}</p>
+                                <a href="#" class="boxed-btn3">Order Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+<!-- features_room_end -->
